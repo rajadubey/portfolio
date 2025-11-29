@@ -24,7 +24,7 @@ export const Expertise = () => {
               className="flex flex-col items-center justify-center p-6 rounded-2xl border border-gray-900 bg-gray-950/50 backdrop-blur-sm group cursor-pointer hover:border-gray-700 transition-colors"
             >
               <div className={`mb-4 ${tech.color} group-hover:scale-110 transition-transform duration-300`}>
-                {React.cloneElement(tech.icon as React.ReactElement, { size: 36 })}
+                {React.cloneElement(tech.icon as any, { size: 36 })}
               </div>
               <span className="text-gray-400 text-xs font-bold uppercase tracking-wider group-hover:text-white transition-colors">{tech.name}</span>
             </motion.div>
