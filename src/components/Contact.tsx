@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin, Github, Linkedin, Send } from 'lucide-react';
-import { DATA } from '../app/data.tsx';
+import { DATA } from '../app/data';
 import { SectionTitle } from './SectionTitle';
 
 export const Contact = () => {

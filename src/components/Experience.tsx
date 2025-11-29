@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { DATA } from '../app/data.tsx';
+import { DATA } from '../app/data';
 import { SectionTitle } from './SectionTitle';
 
 export const Experience = () => {

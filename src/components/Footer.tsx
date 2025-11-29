@@ -1,4 +1,4 @@
-import { DATA } from '../app/data.tsx';
+import { DATA } from '../app/data';
 
 export const Footer = () => {
   return (

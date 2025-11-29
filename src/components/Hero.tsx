@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Github } from 'lucide-react';
-import { DATA } from '../app/data.tsx';
+import { DATA } from '../app/data';
 
 export const Hero = () => {
   return (
