@@ -1,8 +1,86 @@
+'use client';
 import { Mail, Phone, MapPin, Github, Linkedin, Send } from 'lucide-react';
 import { DATA } from '../app/data';
 import { SectionTitle } from './SectionTitle';
+import { logContactUs } from '../libs/contact.service';
+import { useState, FormEvent, useEffect } from 'react';
+import { saveSubmission, getLastSubmission, canSubmitForm } from '../libs/indexedDB';
 
 export const Contact = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(true);
+  const [timeRemaining, setTimeRemaining] = useState<string>('');
+
+  useEffect(() => {
+    const checkSubmissionStatus = async () => {
+      const { canSubmit: allowed, timeRemaining: remaining } = await canSubmitForm();
+      setCanSubmit(allowed);
+
+      if (!allowed && remaining) {
+        const lastSubmission = await getLastSubmission();
+        if (lastSubmission) {
+          setFormData({
+            name: lastSubmission.name,
+            email: lastSubmission.email,
+            message: lastSubmission.message,
+          });
+        }
+        updateTimeRemaining(remaining);
+      }
+    };
+
+    checkSubmissionStatus();
+  }, []);
+
+  useEffect(() => {
+    if (!canSubmit) {
+      const interval = setInterval(async () => {
+        const { canSubmit: allowed, timeRemaining: remaining } = await canSubmitForm();
+        
+        if (allowed) {
+          setCanSubmit(true);
+          setTimeRemaining('');
+          clearInterval(interval);
+        } else if (remaining) {
+          updateTimeRemaining(remaining);
+        }
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [canSubmit]);
+
+  const updateTimeRemaining = (ms: number) => {
+    const hours = Math.floor(ms / (1000 * 60 * 60));
+    const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+    setTimeRemaining(`${hours}h ${minutes}m ${seconds}s`);
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus({ type: null, message: '' });
+
+    const result = await logContactUs(formData);
+
+    if (result.success) {
+      await saveSubmission(formData);
+      setStatus({ type: 'success', message: result.message });
+      setCanSubmit(false);
+      
+      const { timeRemaining: remaining } = await canSubmitForm();
+      if (remaining) {
+        updateTimeRemaining(remaining);
+      }
+    } else {
+      setStatus({ type: 'error', message: result.message });
+    }
+
+    setIsSubmitting(false);
+  };
   return (
     <section id="contact" className="py-24 bg-black relative overflow-hidden">
       {/* Footer Gradient */}
@@ -64,30 +142,56 @@ export const Contact = () => {
           </div>
 
           {/* Form */}
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <input 
-                type="text" 
-                className="w-full bg-gray-950 border border-gray-800 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors"
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                disabled={!canSubmit}
+                required
+                className="w-full bg-gray-950 border border-gray-800 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="Your Name"
               />
             </div>
             <div>
               <input 
-                type="email" 
-                className="w-full bg-gray-950 border border-gray-800 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors"
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                disabled={!canSubmit}
+                required
+                className="w-full bg-gray-950 border border-gray-800 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="your@email.com"
               />
             </div>
             <div>
               <textarea 
                 rows={4}
-                className="w-full bg-gray-950 border border-gray-800 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors resize-none"
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                disabled={!canSubmit}
+                required
+                className="w-full bg-gray-950 border border-gray-800 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="Tell me about your project..."
               />
             </div>
-            <button className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
-              Send Message <Send size={18} />
+            {status.type && (
+              <div className={`p-4 rounded-xl ${status.type === 'success' ? 'bg-green-500/10 text-green-500 border border-green-500/20' : 'bg-red-500/10 text-red-500 border border-red-500/20'}`}>
+                {status.message}
+              </div>
+            )}
+            {!canSubmit && timeRemaining && (
+              <div className="p-4 rounded-xl bg-yellow-500/10 text-yellow-500 border border-yellow-500/20">
+                Thanks for reaching out! Please wait {timeRemaining} before sending another message.
+              </div>
+            )}
+            <button 
+              type="submit"
+              disabled={isSubmitting || !canSubmit}
+              className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? 'Sending...' : !canSubmit ? 'Message Already Sent' : 'Send Message'} <Send size={18} />
             </button>
           </form>
         </div>

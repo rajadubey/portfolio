@@ -1,34 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Github, 
-  Linkedin, 
-  Twitter, 
-  Mail, 
-  Download, 
-  ExternalLink, 
   Code2, 
-  Terminal, 
   Database, 
   Cpu, 
   Globe, 
   Layers, 
-  Server, 
-  Smartphone,
-  Send,
-  MapPin,
-  Phone,
-  Menu,
-  X,
-  BookOpen,
-  Award
-} from 'lucide-react';
+  Server} from 'lucide-react';
 
 // --- Data JSON ---
 // All website content is driven by this object for easy updates.
 export const DATA = {
   personal: {
-    name: "Raja Babu Dubey",
+    name: "Raja Dubey",
     title: "Software Engineer",
     email: "rajadubey1997@gmail.com",
     phone: "786-930-3752",
@@ -36,14 +18,14 @@ export const DATA = {
     social: {
       linkedin: "https://linkedin.com/in/rajababudubey",
       github: "https://github.com/rajadubey",
-      twitter: "#"
+      twitter: "https://x.com/rajadubey0"
     },
     about: "Senior Software Engineer with extensive experience in scalable frontend architectures, workflow automation, and performance optimization. Proven track record in revamping legacy systems and leading technical initiatives.",
-    resumeUrl: "#" // Placeholder for actual resume download
+    resumeUrl: "https://rajadubey.in/resume" // Placeholder for actual resume download
   },
   hero: {
-    badge: "The Developer",
-    title: "Raja Babu Dubey",
+    badge: "Web Developer",
+    title: "Raja Dubey",
     subtitle: "Software Engineer",
     description: "Crafting scalable, high-performance web experiences. Specializing in React architectures, SSR optimizations, and distributed workflow systems."
   },
