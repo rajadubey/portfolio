@@ -50,6 +50,7 @@ export const Contact = () => {
 
       return () => clearInterval(interval);
     }
+    return undefined;
   }, [canSubmit]);
 
   const updateTimeRemaining = (ms: number) => {
@@ -87,9 +88,9 @@ export const Contact = () => {
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-50"></div>
       
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle title="Connect With Me" />
+        <SectionTitle id="contact-heading" title="Connect With Me" />
         
-        <div className="grid md:grid-cols-2 gap-12 bg-gray-900/20 p-8 md:p-12 rounded-[2rem] border border-gray-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 bg-gray-900/20 p-4 md:p-8 lg:p-12 rounded-4xl border border-gray-800">
           {/* Contact Info */}
           <div className="space-y-10">
             <div>
@@ -131,10 +132,10 @@ export const Contact = () => {
 
             <div className="pt-4">
               <div className="flex gap-4">
-                <a href={DATA.personal.social.github} target="_blank" rel="noreferrer" className="p-4 bg-gray-800 rounded-full text-white hover:bg-white hover:text-black transition-all">
+                <a href={DATA.personal.social.github} target="_blank" rel="noreferrer" aria-label="Visit my GitHub profile" className="p-4 bg-gray-800 rounded-full text-white hover:bg-white hover:text-black transition-all min-h-[44px] min-w-[44px] flex items-center justify-center">
                     <Github size={20} />
                 </a>
-                <a href={DATA.personal.social.linkedin} target="_blank" rel="noreferrer" className="p-4 bg-gray-800 rounded-full text-white hover:bg-white hover:text-black transition-all">
+                <a href={DATA.personal.social.linkedin} target="_blank" rel="noreferrer" aria-label="Visit my LinkedIn profile" className="p-4 bg-gray-800 rounded-full text-white hover:bg-white hover:text-black transition-all min-h-[44px] min-w-[44px] flex items-center justify-center">
                     <Linkedin size={20} />
                 </a>
               </div>
@@ -189,7 +190,7 @@ export const Contact = () => {
             <button 
               type="submit"
               disabled={isSubmitting || !canSubmit}
-              className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
             >
               {isSubmitting ? 'Sending...' : !canSubmit ? 'Message Already Sent' : 'Send Message'} <Send size={18} />
             </button>

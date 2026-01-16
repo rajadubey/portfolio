@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
 import { DATA } from '../app/data';
 
 export const Navbar = () => {
@@ -45,17 +46,24 @@ export const Navbar = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-white/5"
+                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-white/5 min-h-[44px] min-w-[44px] flex items-center justify-center"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
-              <a href="#contact" className="bg-white text-black px-4 py-2 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors">
-                Let's Connect
+              <a 
+                href="/files/Resume - Raja Dubey.pdf" 
+                download
+                className="bg-red-600 text-white px-6 py-3 rounded-full text-sm font-bold hover:bg-red-700 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+              >
+                Resume
               </a>
+              <Link href="#contact" className="bg-white text-black px-6 py-3 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center">
+                Let's Connect
+              </Link>
             </div>
           </div>
 
@@ -63,7 +71,8 @@ export const Navbar = () => {
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              className="inline-flex items-center justify-center p-3 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none min-h-[44px] min-w-[44px]"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -82,15 +91,23 @@ export const Navbar = () => {
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  className="text-gray-300 hover:text-white block px-3 py-3 rounded-md text-base font-medium min-h-[44px] min-w-[44px] flex items-center"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
+              <a 
+                href="/files/Resume - Raja Dubey.pdf" 
+                download
+                onClick={() => setIsOpen(false)}
+                className="text-red-400 hover:text-red-300 block px-3 py-3 rounded-md text-base font-medium min-h-[44px] min-w-[44px] flex items-center"
+              >
+                Resume
+              </a>
             </div>
           </motion.div>
         )}

@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { Download } from 'lucide-react';
 import { DATA } from '../app/data';
@@ -7,7 +9,7 @@ export const ResumePreview = () => {
   return (
     <section className="py-24 bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 text-center">
-        <SectionTitle title="Resume" subtitle="A formal look at my professional journey." />
+        <SectionTitle id="resume-heading" title="Resume" subtitle="A formal look at my professional journey." />
         
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
@@ -68,8 +70,8 @@ export const ResumePreview = () => {
           </div>
 
           {/* Overlay Button */}
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white via-white/95 to-transparent flex items-end justify-center pb-10">
-            <button className="bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition-colors flex items-center gap-2 shadow-xl font-bold">
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-white via-white/95 to-transparent flex items-end justify-center pb-10">
+            <button aria-label="Download full resume PDF" className="bg-black text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-colors flex items-center gap-2 shadow-xl font-bold min-h-[44px] min-w-[44px]">
               <Download size={18} /> Download Full Resume
             </button>
           </div>

@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { BookOpen } from 'lucide-react';
 import { DATA } from '../app/data';
@@ -7,7 +9,7 @@ export const Education = () => {
   return (
     <section className="py-24 bg-black border-t border-gray-900">
       <div className="max-w-4xl mx-auto px-4">
-        <SectionTitle title="Education" />
+        <SectionTitle title="Education" id="education-heading" />
         
         <div className="space-y-6">
           {DATA.education.map((edu, index) => (
