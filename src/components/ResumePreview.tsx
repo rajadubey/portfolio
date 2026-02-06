@@ -64,7 +64,7 @@ export const ResumePreview = () => {
                <p className="text-gray-700 text-sm">
                  <strong>Languages:</strong> Java, JavaScript, HTML, CSS, SQL<br/>
                  <strong>Frameworks:</strong> ReactJS, Next.js, Spring Boot, Redux, Express<br/>
-                 <strong>Tools:</strong> Docker, AWS, MongoDB, Elastic Search, Redis
+                 <strong>Tools:</strong> Docker, AWS, Upstash Redis, Elastic Search, Redis
                </p>
             </div>
           </div>

@@ -1,17 +1,11 @@
-// This is a seed script template for Payload CMS
-// To run this script, you would need to:
-// 1. Start the Payload CMS server
-// 2. Use the Payload REST API or admin interface to create content
-// 3. Or use Payload's programmatic API in a proper server context
-
-console.log('🌱 Content Seeding Script');
-console.log('This script contains the data structure for seeding the CMS');
+// Seed data source of truth for the portfolio.
+// Used by `src/scripts/seed-upstash.ts`.
 
 // Profile data structure
 export const profileData = {
   name: 'Raja Babu Dubey',
   title: 'Senior Software Engineer - UI',
-  bio: 'Senior Software Engineer with over 5 years of experience architecting enterprise-grade applications. Currently at Oxyzo Financial Services, I lead the development of internal workflow automation platforms. My role involves not just writing code, but designing the entire frontend ecosystem—from creating private npm registries to establishing standardized UI boilerplates that empower cross-functional teams. Previously, during my tenure at OfBusiness, I tackled high-volume data challenges on platforms like Nexizo.ai and BidAssist. My focus has always been on performance; I successfully optimized legacy web systems, improving performance scores from 65 to 95+ by implementing Server-Side Rendering (SSR) and advanced caching strategies with Redis and CDN edge networks. My technical philosophy bridges the gap between complex backend logic (Spring Boot, Elasticsearch, MongoDB) and fluid, reactive user interfaces (Next.js, Tailwind, Framer Motion). I am currently expanding my expertise into AI, building self-hosted code review systems using LLMs and Docker.',
+  bio: 'Senior Software Engineer with over 5 years of experience architecting enterprise-grade applications. Currently at Oxyzo Financial Services, I lead the development of internal workflow automation platforms. My role involves not just writing code, but designing the entire frontend ecosystem—from creating private npm registries to establishing standardized UI boilerplates that empower cross-functional teams. Previously, during my tenure at OfBusiness, I tackled high-volume data challenges on platforms like Nexizo.ai and BidAssist. My focus has always been on performance; I successfully optimized legacy web systems, improving performance scores from 65 to 95+ by implementing Server-Side Rendering (SSR) and advanced caching strategies with Redis and CDN edge networks. My technical philosophy bridges the gap between complex backend logic (Spring Boot, Elasticsearch, Upstash Redis) and fluid, reactive user interfaces (Next.js, Tailwind, Framer Motion). I am currently expanding my expertise into AI, building self-hosted code review systems using LLMs and Docker.',
   email: 'rajadubey1997@gmail.com',
   phone: '+91-786-930-3752',
   location: 'Gurgaon, India',
@@ -53,7 +47,7 @@ export const experienceData = [
       { technology: 'Next.js' },
       { technology: 'Spring Boot' },
       { technology: 'Redis' },
-      { technology: 'MongoDB' },
+      { technology: 'Upstash Redis' },
       { technology: 'System Design' },
     ],
     order: 1,
@@ -143,7 +137,7 @@ export const skillsData = [
   { name: 'Express', iconName: 'Globe', category: 'backend', proficiency: '4', order: 8 },
 
   // Database Skills
-  { name: 'MongoDB', iconName: 'Database', category: 'database', proficiency: '4', order: 9 },
+  { name: 'Upstash Redis', iconName: 'Database', category: 'database', proficiency: '4', order: 9 },
   { name: 'Elasticsearch', iconName: 'Search', category: 'database', proficiency: '4', order: 10 },
   { name: 'Redis', iconName: 'Database', category: 'database', proficiency: '3', order: 11 },
   { name: 'MySQL', iconName: 'Database', category: 'database', proficiency: '3', order: 12 },
@@ -159,6 +153,7 @@ export const skillsData = [
   { name: 'Git', iconName: 'GitBranch', category: 'tools', proficiency: '5', order: 18 },
 ];
 
-console.log('✅ Seed data structures defined');
-console.log('📝 To use this data, manually create entries in the Payload CMS admin interface');
-console.log('🔗 Admin interface will be available at: /admin');
+if (process.argv[1]?.endsWith('seed.ts')) {
+  console.log('✅ Seed data structures defined');
+  console.log('ℹ️ Run `npm run seed:upstash` to push this data to Upstash Redis.');
+}

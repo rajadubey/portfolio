@@ -6,7 +6,8 @@ export async function GET() {
       message: 'API is working',
       env: {
         hasSecret: !!process.env.PAYLOAD_SECRET,
-        hasDatabase: !!process.env.DATABASE_URI,
+        hasUpstashUrl: !!process.env.UPSTASH_REDIS_REST_URL,
+        hasUpstashToken: !!process.env.UPSTASH_REDIS_REST_TOKEN,
         serverUrl: process.env.NEXT_PUBLIC_SERVER_URL
       }
     })

@@ -76,7 +76,7 @@ export const Expertise = ({ skillsByCategory }: ExpertiseProps) => {
       { id: '4', name: 'Node.js', iconName: 'terminal', category: 'backend' as const, order: 2, createdAt: '', updatedAt: '' },
     ],
     database: [
-      { id: '5', name: 'MongoDB', iconName: 'database', category: 'database' as const, order: 1, createdAt: '', updatedAt: '' },
+      { id: '5', name: 'Upstash Redis', iconName: 'database', category: 'database' as const, order: 1, createdAt: '', updatedAt: '' },
       { id: '6', name: 'Redis', iconName: 'database', category: 'database' as const, order: 2, createdAt: '', updatedAt: '' },
     ]
   };

@@ -43,7 +43,7 @@ export const Experience = ({ experiences }: ExperienceProps) => {
         { technology: 'Next.js' },
         { technology: 'Spring Boot' },
         { technology: 'Redis' },
-        { technology: 'MongoDB' },
+        { technology: 'Upstash Redis' },
         { technology: 'System Design' }
       ],
       order: 1,

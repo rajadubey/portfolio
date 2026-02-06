@@ -41,7 +41,7 @@ export const DATA = {
     { name: 'AWS Lambda/SQS', icon: <Globe />, color: 'text-orange-400' }, // [cite: 426]
     { name: 'Docker', icon: <Cpu />, color: 'text-blue-500' }, // [cite: 437]
     { name: 'Redis', icon: <Database />, color: 'text-red-600' }, // [cite: 435]
-    { name: 'MongoDB', icon: <Database />, color: 'text-green-400' }, // [cite: 435]
+    { name: 'Upstash Redis', icon: <Database />, color: 'text-green-400' }, // [cite: 435]
     { name: 'Redux Toolkit', icon: <Layers />, color: 'text-purple-400' }, // [cite: 434]
     { name: 'Zustand', icon: <Layers />, color: 'text-yellow-100' }, // [cite: 434]
     { name: 'RsPack/Webpack', icon: <Terminal />, color: 'text-blue-200' }, // [cite: 435]
@@ -58,7 +58,7 @@ export const DATA = {
         'Designed a scalable frontend boilerplate and established a private npm registry to standardize UI development across teams.', // [cite: 415]
         'Implemented prioritization and dependency tracking, significantly improving operational transparency.' // [cite: 414]
       ],
-      tech: ['Next.js', 'Spring Boot', 'Redis', 'MongoDB', 'System Design'] // [cite: 416]
+      tech: ['Next.js', 'Spring Boot', 'Redis', 'Upstash Redis', 'System Design'] // [cite: 416]
     },
     {
       id: 2,
@@ -98,8 +98,8 @@ export const DATA = {
       id: 3,
       title: 'Full-Stack Note Platform', // [cite: 441]
       category: 'Full Stack',
-      description: 'A scalable document management application powered by RESTful APIs. Features a hierarchical data structure for managing multiple notebooks and pages, utilizing MongoDB for efficient document storage and Spring Boot for robust backend logic.', // [cite: 442, 443]
-      tech: ['Java', 'Spring Boot', 'Hibernate', 'MongoDB'], // [cite: 441]
+      description: 'A scalable document management application powered by RESTful APIs. Features a hierarchical data structure for managing multiple notebooks and pages, utilizing Redis-backed storage and Spring Boot for robust backend logic.', // [cite: 442, 443]
+      tech: ['Java', 'Spring Boot', 'Hibernate', 'Redis'], // [cite: 441]
       image: '/projects/notes.png',
       link: 'https://github.com/rajadubey',
       span: 'col-span-1'
