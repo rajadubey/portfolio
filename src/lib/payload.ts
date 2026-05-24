@@ -3,11 +3,17 @@ import configPromise from '@payload-config'
 import type { Profile, Experience, Project, Skill } from '../../payload-types'
 
 /**
- * Get a cached Payload instance
+ * Get a cached Payload instance.
+ * Returns null if the database is unavailable (e.g. during static build).
  */
 export const getPayloadClient = async () => {
-  const config = await configPromise
-  return await getPayload({ config })
+  try {
+    const config = await configPromise
+    return await getPayload({ config })
+  } catch (error) {
+    console.warn('Payload CMS unavailable (MongoDB not connected). Using fallback data.', (error as Error).message)
+    return null
+  }
 }
 
 /**
@@ -15,6 +21,7 @@ export const getPayloadClient = async () => {
  */
 export const getProfile = async (): Promise<Profile | null> => {
   const payload = await getPayloadClient()
+  if (!payload) return null
   
   try {
     const result = await payload.find({
@@ -34,6 +41,7 @@ export const getProfile = async (): Promise<Profile | null> => {
  */
 export const getExperience = async (): Promise<Experience[]> => {
   const payload = await getPayloadClient()
+  if (!payload) return []
   
   try {
     const result = await payload.find({
@@ -54,6 +62,7 @@ export const getExperience = async (): Promise<Experience[]> => {
  */
 export const getProjects = async (): Promise<Project[]> => {
   const payload = await getPayloadClient()
+  if (!payload) return []
   
   try {
     const result = await payload.find({
@@ -74,6 +83,7 @@ export const getProjects = async (): Promise<Project[]> => {
  */
 export const getFeaturedProjects = async (): Promise<Project[]> => {
   const payload = await getPayloadClient()
+  if (!payload) return []
   
   try {
     const result = await payload.find({
@@ -99,6 +109,7 @@ export const getFeaturedProjects = async (): Promise<Project[]> => {
  */
 export const getSkills = async (): Promise<Skill[]> => {
   const payload = await getPayloadClient()
+  if (!payload) return []
   
   try {
     const result = await payload.find({
@@ -119,6 +130,7 @@ export const getSkills = async (): Promise<Skill[]> => {
  */
 export const getSkillsByCategory = async (): Promise<Record<string, Skill[]>> => {
   const payload = await getPayloadClient()
+  if (!payload) return {}
   
   try {
     const result = await payload.find({

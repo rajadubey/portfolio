@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>RAJA DUBEY // SENIOR FULL-STACK ARCHITECT</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#e5e2e1",
+                        "on-primary": "#003739",
+                        "surface-container": "#201f1f",
+                        "on-error": "#690005",
+                        "tertiary": "#fdf9f9",
+                        "primary-fixed-dim": "#00dce5",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-highest": "#353534",
+                        "outline-variant": "#3a494a",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-container": "#b5b5b5",
+                        "surface-container-high": "#2a2a2a",
+                        "tertiary-fixed": "#e5e2e1",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#313030",
+                        "surface-tint": "#00dce5",
+                        "on-primary-fixed-variant": "#004f53",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-bright": "#3a3939",
+                        "surface-dim": "#131313",
+                        "surface": "#131313",
+                        "tertiary-container": "#e0dddc",
+                        "on-surface": "#e5e2e1",
+                        "primary-container": "#00f5ff",
+                        "outline": "#849495",
+                        "on-tertiary-container": "#626161",
+                        "secondary": "#c7c6c6",
+                        "secondary-container": "#464747",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "inverse-primary": "#00696e",
+                        "on-primary-container": "#006c71",
+                        "secondary-fixed": "#e3e2e2",
+                        "primary": "#e9feff",
+                        "primary-fixed": "#63f7ff",
+                        "background": "#131313",
+                        "surface-container-low": "#1c1b1b",
+                        "on-primary-fixed": "#002021",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface-variant": "#353534",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#464747",
+                        "inverse-surface": "#e5e2e1",
+                        "on-secondary": "#303031",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-surface-variant": "#b9caca"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid-margin": "24px",
+                        "grid-gutter": "16px",
+                        "section-gap": "80px",
+                        "container-max-width": "1200px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "code-label": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "display": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "code-label": ["13px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #080808;
+            color: #e5e2e1;
+            scroll-behavior: smooth;
+        }
+
+        .glass-panel {
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #1F1F1F;
+        }
+
+        .grid-pattern {
+            background-image: linear-gradient(#1F1F1F 1px, transparent 1px), linear-gradient(90deg, #1F1F1F 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .terminal-shadow {
+            box-shadow: 0 0 20px rgba(0, 220, 229, 0.05);
+        }
+
+        .hover-accent:hover {
+            border-color: #333333;
+            box-shadow: inset 0 0 10px rgba(0, 220, 229, 0.03);
+        }
+
+        .node-line {
+            background: linear-gradient(90deg, #00dce5, transparent);
+        }
+    </style>
+</head>
+
+<body class="font-body-lg overflow-x-hidden selection:bg-primary-fixed-dim/30">
+    <!-- Top Navigation Shell -->
+    <header
+        class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-grid-margin py-4 max-w-container-max-width mx-auto bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant/30">
+        <div class="text-headline-md font-headline-md font-black text-on-surface tracking-tighter">
+            RAJA DUBEY
+        </div>
+        <nav class="hidden md:flex gap-8 items-center">
+            <a class="font-code-label text-code-label uppercase tracking-widest text-primary-fixed-dim font-bold border-b-2 border-primary-fixed-dim pb-1"
+                href="#architecture">Architecture</a>
+            <a class="font-code-label text-code-label uppercase tracking-widest text-on-surface-variant font-medium hover:text-on-surface transition-colors"
+                href="#systems">Systems</a>
+            <a class="font-code-label text-code-label uppercase tracking-widest text-on-surface-variant font-medium hover:text-on-surface transition-colors"
+                href="#lab">Lab</a>
+            <a class="font-code-label text-code-label uppercase tracking-widest text-on-surface-variant font-medium hover:text-on-surface transition-colors"
+                href="#about">About</a>
+        </nav>
+        <button
+            class="bg-primary-fixed-dim text-on-primary px-6 py-2 font-code-label text-code-label uppercase tracking-widest font-bold hover:opacity-90 transition-all scale-95 active:opacity-80">
+            Contact
+        </button>
+    </header>
+    <main class="pt-24 min-h-screen">
+        <!-- Hero Section -->
+        <section class="relative px-grid-margin py-20 overflow-hidden border-b border-outline-variant/20">
+            <div class="absolute inset-0 grid-pattern opacity-30 pointer-events-none"></div>
+            <div class="max-w-container-max-width mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
+                <div class="lg:col-span-7 flex flex-col justify-center">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-low border border-outline-variant/30 rounded-full mb-6 w-fit">
+                        <span class="w-2 h-2 rounded-full bg-primary-fixed-dim animate-pulse"></span>
+                        <span
+                            class="font-code-label text-[11px] uppercase tracking-[0.2em] text-on-surface-variant">System
+                            Status: Optimal</span>
+                    </div>
+                    <h1 class="font-display text-display text-on-surface mb-6 leading-none">
+                        Engineering Scalable <br />Systems at the <span class="text-primary-fixed-dim">Edge.</span>
+                    </h1>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-10 leading-relaxed">
+                        Senior Software Engineer specializing in frontend architecture, distributed systems, and
+                        AI-assisted workflows. Building resilient digital infrastructure for the modern web.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a class="px-8 py-4 bg-primary-fixed-dim text-on-primary font-code-label text-code-label uppercase tracking-widest font-black transition-all hover:brightness-110 active:scale-95"
+                            href="#architecture">
+                            View Workload
+                        </a>
+                        <a class="px-8 py-4 border border-outline-variant text-on-surface font-code-label text-code-label uppercase tracking-widest font-bold hover:bg-surface-container-high transition-all"
+                            href="#lab">
+                            Terminal Lab
+                        </a>
+                    </div>
+                </div>
+                <!-- System Overview Visual -->
+                <div class="lg:col-span-5 relative">
+                    <div class="glass-panel p-6 rounded-lg relative overflow-hidden group">
+                        <div class="flex items-center justify-between mb-8 border-b border-outline-variant/30 pb-4">
+                            <span class="font-code-label text-primary-fixed-dim">CORE_SYSTEM_V2.1</span>
+                            <div class="flex gap-1.5">
+                                <div class="w-2.5 h-2.5 rounded-full bg-error/40"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-secondary-container"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-primary-fixed-dim/40"></div>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <!-- Schematic Diagram -->
+                            <div class="flex flex-col items-center gap-4">
+                                <div
+                                    class="w-full flex justify-between items-center px-4 py-2 border border-primary-fixed-dim/20 bg-primary-fixed-dim/5 rounded text-center">
+                                    <span class="font-code-label text-[10px] text-primary-fixed-dim uppercase">Frontend
+                                        (Next.js)</span>
+                                </div>
+                                <div class="w-0.5 h-4 bg-gradient-to-b from-primary-fixed-dim/40 to-transparent"></div>
+                                <div
+                                    class="w-full flex justify-between items-center px-4 py-2 border border-outline-variant/30 bg-surface-container-low rounded text-center">
+                                    <span class="font-code-label text-[10px] text-on-surface-variant uppercase">API
+                                        Gateway</span>
+                                </div>
+                                <div class="w-full flex gap-4 justify-center items-center">
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-0.5 h-4 bg-outline-variant/30"></div>
+                                        <div class="px-3 py-2 border border-outline-variant/30 rounded text-center">
+                                            <span
+                                                class="font-code-label text-[10px] text-on-surface-variant uppercase">Queue</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-0.5 h-4 bg-outline-variant/30"></div>
+                                        <div class="px-3 py-2 border border-outline-variant/30 rounded text-center">
+                                            <span
+                                                class="font-code-label text-[10px] text-on-surface-variant uppercase">Worker</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-0.5 h-4 bg-outline-variant/30"></div>
+                                <div
+                                    class="w-full flex justify-between items-center px-4 py-2 border border-on-secondary-fixed-variant/40 bg-surface-container-high rounded text-center">
+                                    <span class="font-code-label text-[10px] text-on-surface-variant uppercase">Database
+                                        (PostgreSQL)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Data Flow Interaction -->
+                        <div class="absolute inset-0 pointer-events-none opacity-20 overflow-hidden">
+                            <div
+                                class="absolute top-1/4 left-0 w-full h-px bg-primary-fixed-dim animate-[move-x_3s_linear_infinite]">
+                            </div>
+                            <div
+                                class="absolute top-1/2 left-0 w-full h-px bg-primary-fixed-dim animate-[move-x_5s_linear_infinite_reverse]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Metrics Ticker -->
+        <div
+            class="w-full bg-surface-container-lowest border-b border-outline-variant/20 py-4 overflow-hidden whitespace-nowrap">
+            <div class="flex items-center gap-12 px-grid-margin animate-[marquee_30s_linear_infinite]">
+                <div class="flex items-center gap-2"><span class="font-code-label text-primary-fixed-dim">99.9%</span>
+                    <span class="font-code-label text-on-surface-variant uppercase text-[11px]">Uptime SLA</span></div>
+                <div class="flex items-center gap-2"><span class="font-code-label text-primary-fixed-dim">450MS</span>
+                    <span class="font-code-label text-on-surface-variant uppercase text-[11px]">P99 Latency</span></div>
+                <div class="flex items-center gap-2"><span class="font-code-label text-primary-fixed-dim">1.2M+</span>
+                    <span class="font-code-label text-on-surface-variant uppercase text-[11px]">Requests / Day</span>
+                </div>
+                <div class="flex items-center gap-2"><span class="font-code-label text-primary-fixed-dim">ZERO</span>
+                    <span class="font-code-label text-on-surface-variant uppercase text-[11px]">Critical Failures</span>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="flex items-center gap-2"><span class="font-code-label text-primary-fixed-dim">99.9%</span>
+                    <span class="font-code-label text-on-surface-variant uppercase text-[11px]">Uptime SLA</span></div>
+                <div class="flex items-center gap-2"><span class="font-code-label text-primary-fixed-dim">450MS</span>
+                    <span class="font-code-label text-on-surface-variant uppercase text-[11px]">P99 Latency</span></div>
+                <div class="flex items-center gap-2"><span class="font-code-label text-primary-fixed-dim">1.2M+</span>
+                    <span class="font-code-label text-on-surface-variant uppercase text-[11px]">Requests / Day</span>
+                </div>
+            </div>
+        </div>
+        <!-- Architecture Layers Section -->
+        <section class="py-section-gap px-grid-margin max-w-container-max-width mx-auto" id="architecture">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase mb-2">Core Expertise</h2>
+                    <p class="font-code-label text-on-surface-variant uppercase tracking-widest text-sm">System
+                        capabilities across the full spectrum</p>
+                </div>
+                <div class="h-px bg-outline-variant/30 flex-grow mx-8 hidden md:block"></div>
+                <div class="font-code-label text-on-surface-variant">L_01-L_03</div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter">
+                <!-- Layer 01 -->
+                <div
+                    class="glass-panel p-8 hover-accent transition-all group flex flex-col h-full border-t-2 border-t-primary-fixed-dim/40">
+                    <span class="font-code-label text-primary-fixed-dim text-xs mb-4">LAYER_01</span>
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Frontend Architecture</h3>
+                    <p class="font-body-sm text-on-surface-variant mb-8 flex-grow">
+                        Engineering high-performance web applications using React and Next.js. Focus on Core Web Vitals,
+                        SSR strategies, and atomic design systems.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="font-code-label text-[11px] text-on-surface-variant uppercase">Performance
+                                Score</span>
+                            <span class="font-code-label text-primary-fixed-dim">98/100</span>
+                        </div>
+                        <div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+                            <div class="h-full bg-primary-fixed-dim w-[98%]"></div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-4">
+                            <span
+                                class="px-2 py-0.5 bg-surface-container-low border border-outline-variant/30 font-code-label text-[10px] text-on-surface-variant">REACT</span>
+                            <span
+                                class="px-2 py-0.5 bg-surface-container-low border border-outline-variant/30 font-code-label text-[10px] text-on-surface-variant">NEXT.JS</span>
+                            <span
+                                class="px-2 py-0.5 bg-surface-container-low border border-outline-variant/30 font-code-label text-[10px] text-on-surface-variant">TYPESCRIPT</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Layer 02 -->
+                <div
+                    class="glass-panel p-8 hover-accent transition-all group flex flex-col h-full border-t-2 border-t-outline-variant/40">
+                    <span class="font-code-label text-on-surface-variant text-xs mb-4">LAYER_02</span>
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Systems &amp; Infra</h3>
+                    <p class="font-body-sm text-on-surface-variant mb-8 flex-grow">
+                        Building distributed microservices and serverless pipelines. Expert in event-driven
+                        architectures using AWS, SQS, and Node.js.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="font-code-label text-[11px] text-on-surface-variant uppercase">System
+                                Scalability</span>
+                            <span class="font-code-label text-on-surface">OPTIMIZED</span>
+                        </div>
+                        <div class="flex gap-1">
+                            <div class="h-1 flex-grow bg-primary-fixed-dim"></div>
+                            <div class="h-1 flex-grow bg-primary-fixed-dim"></div>
+                            <div class="h-1 flex-grow bg-primary-fixed-dim"></div>
+                            <div class="h-1 flex-grow bg-outline-variant"></div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-4">
+                            <span
+                                class="px-2 py-0.5 bg-surface-container-low border border-outline-variant/30 font-code-label text-[10px] text-on-surface-variant">AWS
+                                LAMBDA</span>
+                            <span
+                                class="px-2 py-0.5 bg-surface-container-low border border-outline-variant/30 font-code-label text-[10px] text-on-surface-variant">NODE.JS</span>
+                            <span
+                                class="px-2 py-0.5 bg-surface-container-low border border-outline-variant/30 font-code-label text-[10px] text-on-surface-variant">ELASTICSEARCH</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Layer 03 -->
+                <div
+                    class="glass-panel p-8 hover-accent transition-all group flex flex-col h-full border-t-2 border-t-outline-variant/40">
+                    <span class="font-code-label text-on-surface-variant text-xs mb-4">LAYER_03</span>
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-4">AI Engineering</h3>
+                    <p class="font-body-sm text-on-surface-variant mb-8 flex-grow">
+                        Integrating LLMs into dev workflows. AI-powered code analysis, local model deployment with
+                        Ollama, and automated quality gates.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="font-code-label text-[11px] text-on-surface-variant uppercase">Workflow
+                                Velocity</span>
+                            <span class="font-code-label text-on-surface">+125%</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1">
+                            <div class="h-4 bg-primary-fixed-dim/40 border border-primary-fixed-dim/60"></div>
+                            <div class="h-4 bg-primary-fixed-dim/40 border border-primary-fixed-dim/60"></div>
+                            <div class="h-4 bg-primary-fixed-dim/40 border border-primary-fixed-dim/60"></div>
+                            <div class="h-4 bg-primary-fixed-dim/40 border border-primary-fixed-dim/60"></div>
+                            <div class="h-4 animate-pulse bg-primary-fixed-dim border border-primary-fixed-dim"></div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-4">
+                            <span
+                                class="px-2 py-0.5 bg-surface-container-low border border-outline-variant/30 font-code-label text-[10px] text-on-surface-variant">DEEPSEEK</span>
+                            <span
+                                class="px-2 py-0.5 bg-surface-container-low border border-outline-variant/30 font-code-label text-[10px] text-on-surface-variant">OLLAMA</span>
+                            <span
+                                class="px-2 py-0.5 bg-surface-container-low border border-outline-variant/30 font-code-label text-[10px] text-on-surface-variant">LANGCHAIN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Project Showcase / High-Density Technical Log -->
+        <section class="bg-surface-container-low py-section-gap px-grid-margin" id="lab">
+            <div class="max-w-container-max-width mx-auto">
+                <div class="mb-12">
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase mb-4">System Deployments</h2>
+                    <div class="w-20 h-1 bg-primary-fixed-dim"></div>
+                </div>
+                <div class="space-y-px bg-outline-variant/20 border border-outline-variant/20">
+                    <!-- Technical Project 01 -->
+                    <div
+                        class="bg-surface p-6 flex flex-col md:flex-row gap-6 items-start md:items-center hover:bg-surface-container transition-colors group">
+                        <div class="font-code-label text-on-surface-variant opacity-50 shrink-0">01_LOG</div>
+                        <div class="shrink-0 md:w-32">
+                            <span
+                                class="font-code-label text-primary-fixed-dim bg-primary-fixed-dim/10 px-2 py-1 text-xs">SUCCESS</span>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-headline-md text-headline-md text-on-surface mb-1">ScaleSearch V3</h4>
+                            <p class="font-body-sm text-on-surface-variant">Distributed Elasticsearch cluster
+                                orchestration for 100M+ documents.</p>
+                        </div>
+                        <div class="flex flex-col items-end gap-2 text-right">
+                            <span class="font-code-label text-primary-fixed-dim text-sm">-40% LATENCY</span>
+                            <span
+                                class="font-code-label text-[10px] text-on-surface-variant uppercase tracking-widest">K8S
+                                // RUST // ELASTIC</span>
+                        </div>
+                        <div class="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="material-symbols-outlined text-primary-fixed-dim">arrow_outward</span>
+                        </div>
+                    </div>
+                    <!-- Technical Project 02 -->
+                    <div
+                        class="bg-surface p-6 flex flex-col md:flex-row gap-6 items-start md:items-center hover:bg-surface-container transition-colors group">
+                        <div class="font-code-label text-on-surface-variant opacity-50 shrink-0">02_LOG</div>
+                        <div class="shrink-0 md:w-32">
+                            <span
+                                class="font-code-label text-primary-fixed-dim bg-primary-fixed-dim/10 px-2 py-1 text-xs">SUCCESS</span>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-headline-md text-headline-md text-on-surface mb-1">Aura Architecture</h4>
+                            <p class="font-body-sm text-on-surface-variant">Enterprise-grade design system and frontend
+                                boilerplate with zero-runtime CSS.</p>
+                        </div>
+                        <div class="flex flex-col items-end gap-2 text-right">
+                            <span class="font-code-label text-primary-fixed-dim text-sm">99 LIGHTHOUSE</span>
+                            <span
+                                class="font-code-label text-[10px] text-on-surface-variant uppercase tracking-widest">NEXT.JS
+                                // TAILWIND // TRPC</span>
+                        </div>
+                        <div class="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="material-symbols-outlined text-primary-fixed-dim">arrow_outward</span>
+                        </div>
+                    </div>
+                    <!-- Technical Project 03 -->
+                    <div
+                        class="bg-surface p-6 flex flex-col md:flex-row gap-6 items-start md:items-center hover:bg-surface-container transition-colors group">
+                        <div class="font-code-label text-on-surface-variant opacity-50 shrink-0">03_LOG</div>
+                        <div class="shrink-0 md:w-32">
+                            <span
+                                class="font-code-label text-on-surface-variant bg-on-surface-variant/10 px-2 py-1 text-xs">ACTIVE</span>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-headline-md text-headline-md text-on-surface mb-1">FlowGate AI</h4>
+                            <p class="font-body-sm text-on-surface-variant">Automated PR review agent utilizing local
+                                LLMs for security and style compliance.</p>
+                        </div>
+                        <div class="flex flex-col items-end gap-2 text-right">
+                            <span class="font-code-label text-primary-fixed-dim text-sm">PR VELOCITY +60%</span>
+                            <span
+                                class="font-code-label text-[10px] text-on-surface-variant uppercase tracking-widest">PYTHON
+                                // OLLAMA // GITHUB ACTIONS</span>
+                        </div>
+                        <div class="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="material-symbols-outlined text-primary-fixed-dim">arrow_outward</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Final CTA / Contact Matrix -->
+        <section class="py-section-gap px-grid-margin max-w-container-max-width mx-auto" id="about">
+            <div class="glass-panel p-12 border-primary-fixed-dim/20 relative overflow-hidden group">
+                <div
+                    class="absolute -right-20 -top-20 w-80 h-80 bg-primary-fixed-dim/5 rounded-full blur-3xl group-hover:bg-primary-fixed-dim/10 transition-colors">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+                    <div>
+                        <h2 class="font-display text-display text-on-surface mb-6">Need a <br />System Upgrade?</h2>
+                        <p class="font-body-lg text-on-surface-variant mb-8 leading-relaxed">
+                            Currently accepting select senior-level architecture consultations and high-impact
+                            engineering roles. Let's discuss your technical roadmap.
+                        </p>
+                        <div class="flex flex-col gap-4">
+                            <div class="flex items-center gap-4 text-primary-fixed-dim">
+                                <span class="material-symbols-outlined">alternate_email</span>
+                                <span class="font-code-label uppercase">arch@rajadubey.dev</span>
+                            </div>
+                            <div class="flex items-center gap-4 text-on-surface-variant">
+                                <span class="material-symbols-outlined">location_on</span>
+                                <span class="font-code-label uppercase">Remote // UTC-5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-black/50 p-8 rounded-lg border border-outline-variant/30">
+                        <form class="space-y-6">
+                            <div class="space-y-2">
+                                <label
+                                    class="font-code-label text-xs text-on-surface-variant uppercase">Input_Name</label>
+                                <input
+                                    class="w-full bg-[#040404] border border-outline-variant focus:border-primary-fixed-dim focus:ring-0 text-on-surface font-body-sm p-3 transition-colors"
+                                    type="text" />
+                            </div>
+                            <div class="space-y-2">
+                                <label
+                                    class="font-code-label text-xs text-on-surface-variant uppercase">Project_Description</label>
+                                <textarea
+                                    class="w-full bg-[#040404] border border-outline-variant focus:border-primary-fixed-dim focus:ring-0 text-on-surface font-body-sm p-3 transition-colors"
+                                    rows="4"></textarea>
+                            </div>
+                            <button
+                                class="w-full py-4 bg-primary-fixed-dim text-on-primary font-code-label text-code-label uppercase tracking-widest font-black hover:brightness-110 active:scale-95 transition-all"
+                                type="submit">
+                                Execute Request
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer Shell -->
+    <footer
+        class="w-full py-8 px-grid-margin border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-lowest">
+        <div class="font-code-label text-code-label uppercase tracking-widest text-on-surface-variant font-bold">
+            © 2024 RAJA DUBEY // CORE_SYSTEM_V2.1
+        </div>
+        <div class="flex gap-8">
+            <a class="font-code-label text-code-label uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed-dim transition-colors opacity-80 hover:opacity-100"
+                href="#">GitHub</a>
+            <a class="font-code-label text-code-label uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed-dim transition-colors opacity-80 hover:opacity-100"
+                href="#">LinkedIn</a>
+            <a class="font-code-label text-code-label uppercase tracking-widest text-on-surface-variant hover:text-primary-fixed-dim transition-colors opacity-80 hover:opacity-100"
+                href="#">Source</a>
+        </div>
+    </footer>
+    <script>
+        // Simple micro-interactions for the 'engineering' feel
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.parentElement.querySelector('label').classList.add('text-primary-fixed-dim');
+                });
+                input.addEventListener('blur', () => {
+                    input.parentElement.querySelector('label').classList.remove('text-primary-fixed-dim');
+                });
+            });
+
+            // Smooth reveal animation observer
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100');
+                        entry.target.classList.remove('opacity-0', 'translate-y-4');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
+                observer.observe(section);
+            });
+        });
+    </script>
+    <style>
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes move-x {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</body>
+
+</html>

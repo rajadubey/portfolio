@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { JSDOM } from 'jsdom';
 import fc from 'fast-check';
-import App from '../app/page';
+import App from '@/variants/v0';
 
 // Mock the CMS data fetching functions
 jest.mock('@/lib/payload', () => ({
