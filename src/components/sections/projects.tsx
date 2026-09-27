@@ -67,16 +67,28 @@ export default function Projects() {
                 >
                   <h3 className="text-xl font-semibold t-primary mb-4 flex items-center justify-between">
                     <span>{project.name}</span>
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-emerald-500 hover:underline font-mono"
-                      >
-                        GitHub ↗
-                      </a>
-                    )}
+                    <div className="flex items-center gap-3">
+                      {project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-emerald-500 hover:underline font-mono"
+                        >
+                          Live Demo ↗
+                        </a>
+                      )}
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-emerald-500 hover:underline font-mono"
+                        >
+                          GitHub ↗
+                        </a>
+                      )}
+                    </div>
                   </h3>
 
                   {/* Tabs */}
@@ -226,16 +238,28 @@ function MobileProject({
             className="overflow-hidden"
           >
             <div className="px-4 pb-4 space-y-3">
-              {project.github && (
-                <div>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-emerald-500 hover:underline font-mono inline-flex items-center"
-                  >
-                    GitHub ↗
-                  </a>
+              {(project.demoUrl || project.github) && (
+                <div className="flex items-center gap-3">
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-emerald-500 hover:underline font-mono inline-flex items-center"
+                    >
+                      Live Demo ↗
+                    </a>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-emerald-500 hover:underline font-mono inline-flex items-center"
+                    >
+                      GitHub ↗
+                    </a>
+                  )}
                 </div>
               )}
               <div className="flex flex-wrap gap-1.5">

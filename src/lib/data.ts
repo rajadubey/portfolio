@@ -36,6 +36,7 @@ export interface Project {
   bullets: string[];
   awards?: string[];
   github?: string;
+  demoUrl?: string;
 }
 
 export interface Publication {
@@ -166,6 +167,26 @@ export const projects: Project[] = [
     bullets: [
       "Built an internal connectivity solution to bridge local development environments with remote stage/devbox machines using Nginx reverse proxying.",
       "Implemented configurable port mapping and request routing to replace manual tunnel setup, enabling seamless local-to-stage communication for development and debugging.",
+    ],
+  },
+  {
+    name: "JavaScript Playground",
+    description:
+      "Interactive in-browser code editor and sandbox with Monaco Editor, live compilation, and integrated console.",
+    stack: [
+      "React",
+      "TypeScript",
+      "Monaco Editor",
+      "Vite",
+      "Tailwind CSS",
+      "Web Workers",
+    ],
+    demoUrl: "https://playground.rajadubey.in/",
+    bullets: [
+      "Architected a full-featured browser-based IDE and code execution sandbox supporting real-time JavaScript and TypeScript evaluation with zero backend dependency.",
+      "Integrated Monaco Editor with dynamic type definitions, automated React declaration package loading, and VS Code dark theme styling.",
+      "Engineered multi-file project workspace capabilities with a file explorer, project search, dependency management, and debounced auto-saving.",
+      "Built an isolated sandbox runtime with live console log capture, displaying evaluations, runtime errors, and output streams in real time.",
     ],
   },
 ];

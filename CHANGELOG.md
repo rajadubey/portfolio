@@ -122,3 +122,12 @@ Conducted a thorough desktop (`1280x800`) and mobile (`375x812`) UX/UI audit in 
 #### 6. Toast Animation Fix
 - Preserved horizontal centering in `src/components/copy-effect.tsx` by passing `x: '-50%'` across Framer Motion `initial`, `animate`, and `exit` states.
 
+---
+
+### 🚀 Projects Update
+
+- Added **JavaScript Playground** (`https://playground.rajadubey.in/`) to the Projects section:
+  - Added `demoUrl` field to `Project` interface and data definition in `src/lib/data.ts`.
+  - Added "Live Demo ↗" links with external tab navigation across desktop and mobile project views in `src/components/sections/projects.tsx`.
+
+
