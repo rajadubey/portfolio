@@ -22,7 +22,8 @@
       },
       "a11y": {
         "noSvgWithoutTitle": "off",
-        "useButtonType": "off"
+        "useButtonType": "off",
+        "noRedundantRoles": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off"

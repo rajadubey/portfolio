@@ -81,7 +81,10 @@ export default function Nav({ onCommandPalette }: NavProps) {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 h-14 border-b b-subtle bg-surface/80 backdrop-blur-md transition-colors">
+    <nav
+      role="navigation"
+      className="fixed top-0 left-0 right-0 z-50 h-14 border-b b-subtle bg-surface/80 backdrop-blur-md transition-colors"
+    >
       <div
         className="mx-auto h-full flex items-center justify-between px-6"
         style={{ maxWidth: MAX_WIDTH }}
