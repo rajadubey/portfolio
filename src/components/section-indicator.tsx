@@ -16,6 +16,14 @@ export default function SectionIndicator() {
   const [active, setActive] = useState("home");
 
   const handleScroll = useCallback(() => {
+    const isAtBottom =
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 60;
+    if (isAtBottom) {
+      setActive("contact");
+      return;
+    }
+
     const scrollY = window.scrollY + 200;
     for (let i = sections.length - 1; i >= 0; i--) {
       const secId = sections[i];
@@ -51,14 +59,14 @@ export default function SectionIndicator() {
   };
 
   return (
-    <div className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-2">
+    <div className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-1.5">
       {sections.map((s) => (
         <button
           key={s}
           onClick={() => scrollTo(s)}
           title={s}
           aria-label={`Jump to ${s} section`}
-          className="p-1 -m-1 flex items-center justify-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-full"
+          className="w-6 h-6 flex items-center justify-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-full"
         >
           <span
             className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${

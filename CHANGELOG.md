@@ -130,4 +130,30 @@ Conducted a thorough desktop (`1280x800`) and mobile (`375x812`) UX/UI audit in 
   - Added `demoUrl` field to `Project` interface and data definition in `src/lib/data.ts`.
   - Added "Live Demo ↗" links with external tab navigation across desktop and mobile project views in `src/components/sections/projects.tsx`.
 
+---
+
+### ⚡ PageSpeed Insights & Accessibility Audit Fixes
+
+Resolved all issues flagged by Google PageSpeed Insights (Desktop & Mobile):
+
+#### 1. Color Contrast (WCAG AAA & AA Compliance)
+- Fixed avatar contrast in `src/components/sections/hero.tsx`: Replaced light `text-emerald-400` with `text-emerald-800 dark:text-emerald-400` on `#c6ecdf` background (contrast ratio improved from 1.51:1 to >6.2:1).
+- Fixed "View Resume" button: Changed text to `text-emerald-800 dark:text-emerald-400` on `#dff2ec` (contrast ratio improved from 1.66:1 to >6.5:1).
+- Fixed Contact section links: Switched to `text-emerald-700 dark:text-emerald-400 hover:text-emerald-600` for high contrast against light surfaces.
+
+#### 2. Sequential Heading Order
+- Fixed `heading-order` failure in `src/components/sections/engineering.tsx`: Changed `<h4` skill categories to `<h3`, creating a strictly sequential `<h1>` → `<h2>` → `<h3>` heading tree across the entire page.
+
+#### 3. Touch Target Size (`target-size`)
+- Fixed interactive dot targets in `src/components/section-indicator.tsx`: Replaced 14px × 14px button boundaries with standard 24px × 24px targets (`w-6 h-6 flex items-center justify-center`) while keeping the visual indicator dots crisp and centered.
+
+#### 4. Modern JS Target & Polyfill Elimination
+- In `tsconfig.json`, updated `"target": "ES2017"` to `"target": "ES2022"`, eliminating redundant polyfills for native modern APIs (`Array.prototype.at`, `Object.fromEntries`, etc.).
+- Cleaned up obsolete `"@payload-config"` path mapping.
+
+#### 5. Bundle & Build Optimization
+- In `next.config.ts`, enabled `experimental.optimizePackageImports` for `["framer-motion", "lucide-react"]` to reduce unused JavaScript.
+- Removed redundant `/_next/static/(.*)` custom cache-control header to prevent Next.js cache header conflict warnings.
+
+
 

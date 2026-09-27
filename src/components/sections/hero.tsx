@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <FadeIn as="section" className="pt-16 pb-12 md:pt-24 md:pb-16">
       <div id="home" className="flex items-center gap-4 mb-4">
-        <div className="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-bold flex items-center justify-center text-lg shrink-0">
+        <div className="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-800 dark:text-emerald-400 font-bold flex items-center justify-center text-lg shrink-0">
           RD
         </div>
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold t-primary tracking-[-0.02em]">
@@ -27,7 +27,7 @@ export default function Hero() {
           href={personalInfo.resumeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-sm font-medium transition-all group"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-800 dark:text-emerald-400 border border-emerald-500/30 text-sm font-medium transition-all group"
         >
           <svg
             className="w-4 h-4"
@@ -63,7 +63,7 @@ export default function Hero() {
       <div className="flex flex-wrap items-center gap-y-2 text-sm t-muted">
         <a
           href={`mailto:${personalInfo.email}`}
-          className="hover:text-emerald-400 transition-colors underline underline-offset-4 decoration-current/20 hover:decoration-emerald-400/40"
+          className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors underline underline-offset-4 decoration-current/20 hover:decoration-emerald-500/40"
         >
           {personalInfo.email}
         </a>
@@ -77,7 +77,7 @@ export default function Hero() {
               href={s.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-emerald-400 transition-colors underline underline-offset-4 decoration-current/20 hover:decoration-emerald-400/40"
+              className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors underline underline-offset-4 decoration-current/20 hover:decoration-emerald-500/40"
             >
               {s.label}
             </a>

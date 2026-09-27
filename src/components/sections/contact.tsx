@@ -26,7 +26,7 @@ export default function Contact() {
         </h2>
         <a
           href={`mailto:${personalInfo.email}`}
-          className="text-emerald-400 hover:text-emerald-300 transition-colors text-lg underline underline-offset-4 decoration-emerald-400/30"
+          className="text-emerald-700 dark:text-emerald-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors text-lg underline underline-offset-4 decoration-emerald-500/30"
         >
           {personalInfo.email}
         </a>
@@ -38,7 +38,7 @@ export default function Contact() {
               href={s.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-emerald-400 transition-colors underline underline-offset-4 decoration-current/20 hover:decoration-emerald-400/40"
+              className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors underline underline-offset-4 decoration-current/20 hover:decoration-emerald-500/40"
             >
               {s.label}
             </a>
@@ -47,7 +47,7 @@ export default function Contact() {
             href={personalInfo.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-emerald-400 transition-colors underline underline-offset-4 decoration-current/20 hover:decoration-emerald-400/40"
+            className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors underline underline-offset-4 decoration-current/20 hover:decoration-emerald-500/40"
           >
             Resume
           </a>

@@ -74,9 +74,9 @@ export default function Engineering() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {skillCategories.map((cat) => (
                           <div key={cat.category}>
-                            <h4 className="text-xs font-medium t-muted uppercase tracking-wider mb-2">
+                            <h3 className="text-xs font-medium t-muted uppercase tracking-wider mb-2">
                               {cat.category}
-                            </h4>
+                            </h3>
                             <p className="text-sm t-muted leading-relaxed">
                               {cat.items.join(", ")}
                             </p>
