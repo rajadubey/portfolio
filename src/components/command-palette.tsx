@@ -1,135 +1,147 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import { personalInfo, projects } from '@/lib/data'
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { personalInfo, projects } from "@/lib/data";
 
 interface CommandItem {
-  group: string
-  label: string
-  action: () => void
+  group: string;
+  label: string;
+  action: () => void;
 }
 
 interface CommandPaletteProps {
-  open: boolean
-  onClose: () => void
+  open: boolean;
+  onClose: () => void;
 }
 
 export default function CommandPalette({ open, onClose }: CommandPaletteProps) {
-  const [query, setQuery] = useState('')
-  const [activeIndex, setActiveIndex] = useState(0)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const reduceMotion = useReducedMotion()
+  const [query, setQuery] = useState("");
+  const [activeIndex, setActiveIndex] = useState(0);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const reduceMotion = useReducedMotion();
 
   const scrollTo = useCallback(
     (id: string) => {
-      onClose()
+      onClose();
       setTimeout(() => {
-        const el = document.getElementById(id)
+        const el = document.getElementById(id);
         if (el) {
-          const section = el.closest('section') || el.parentElement
+          const section = el.closest("section") || el.parentElement;
           if (section) {
-            section.style.opacity = '1'
-            section.style.transform = 'none'
+            section.style.opacity = "1";
+            section.style.transform = "none";
           }
-          const top = el.offsetTop - 72
-          window.scrollTo({ top, behavior: 'smooth' })
+          const top = el.getBoundingClientRect().top + window.scrollY - 72;
+          window.scrollTo({ top, behavior: "smooth" });
         }
-      }, 50)
+      }, 50);
     },
-    [onClose]
-  )
+    [onClose],
+  );
 
   const items = useMemo<CommandItem[]>(
     () => [
-      { group: 'Navigation', label: 'Home', action: () => scrollTo('home') },
-      { group: 'Navigation', label: 'About', action: () => scrollTo('about') },
-      { group: 'Navigation', label: 'Work', action: () => scrollTo('work') },
-      { group: 'Navigation', label: 'Education', action: () => scrollTo('education') },
-      { group: 'Navigation', label: 'Projects', action: () => scrollTo('projects') },
-      { group: 'Navigation', label: 'Engineering', action: () => scrollTo('engineering') },
-      { group: 'Navigation', label: 'Contact', action: () => scrollTo('contact') },
-      ...projects.map(p => ({
-        group: 'Projects',
+      { group: "Navigation", label: "Home", action: () => scrollTo("home") },
+      { group: "Navigation", label: "About", action: () => scrollTo("about") },
+      { group: "Navigation", label: "Work", action: () => scrollTo("work") },
+      {
+        group: "Navigation",
+        label: "Education",
+        action: () => scrollTo("education"),
+      },
+      {
+        group: "Navigation",
+        label: "Projects",
+        action: () => scrollTo("projects"),
+      },
+      {
+        group: "Navigation",
+        label: "Engineering",
+        action: () => scrollTo("engineering"),
+      },
+      {
+        group: "Navigation",
+        label: "Contact",
+        action: () => scrollTo("contact"),
+      },
+      ...projects.map((p) => ({
+        group: "Projects",
         label: p.name,
-        action: () => scrollTo('projects'),
+        action: () => scrollTo("projects"),
       })),
       {
-        group: 'Links',
-        label: 'Download Resume',
+        group: "Links",
+        label: "Download Resume",
         action: () => {
-          onClose()
-          const link = document.createElement('a')
-          link.href = personalInfo.resumeUrl
-          link.download = 'Raja_Babu_Dubey_Resume.pdf'
-          link.click()
+          onClose();
+          window.open(personalInfo.resumeUrl, "_blank");
         },
       },
-      ...personalInfo.socials.map(s => ({
-        group: 'Links',
+      ...personalInfo.socials.map((s) => ({
+        group: "Links",
         label: s.label,
         action: () => {
-          onClose()
-          window.open(s.url, '_blank')
+          onClose();
+          window.open(s.url, "_blank");
         },
       })),
     ],
-    [scrollTo, onClose]
-  )
+    [scrollTo, onClose],
+  );
 
   const filtered = useMemo(() => {
-    if (!query) return items
-    const q = query.toLowerCase()
-    return items.filter(i => i.label.toLowerCase().includes(q) || i.group.toLowerCase().includes(q))
-  }, [items, query])
-
-  useEffect(() => {
-    setActiveIndex(0)
-  }, [query])
+    if (!query) return items;
+    const q = query.toLowerCase();
+    return items.filter(
+      (i) =>
+        i.label.toLowerCase().includes(q) || i.group.toLowerCase().includes(q),
+    );
+  }, [items, query]);
 
   useEffect(() => {
     if (open) {
-      setQuery('')
-      setActiveIndex(0)
-      setTimeout(() => inputRef.current?.focus(), 50)
+      setQuery("");
+      setActiveIndex(0);
+      setTimeout(() => inputRef.current?.focus(), 50);
     }
-  }, [open])
+  }, [open]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault()
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
       }
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [])
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'ArrowDown') {
-      e.preventDefault()
-      setActiveIndex(i => Math.min(i + 1, filtered.length - 1))
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault()
-      setActiveIndex(i => Math.max(i - 1, 0))
-    } else if (e.key === 'Enter' && filtered[activeIndex]) {
-      filtered[activeIndex].action()
-    } else if (e.key === 'Escape') {
-      onClose()
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveIndex((i) => Math.min(i + 1, filtered.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveIndex((i) => Math.max(i - 1, 0));
+    } else if (e.key === "Enter" && filtered[activeIndex]) {
+      filtered[activeIndex].action();
+    } else if (e.key === "Escape") {
+      onClose();
     }
-  }
+  };
 
   const groups = useMemo(() => {
-    const map = new Map<string, typeof filtered>()
+    const map = new Map<string, typeof filtered>();
     for (const item of filtered) {
-      const g = map.get(item.group) ?? []
-      g.push(item)
-      map.set(item.group, g)
+      const g = map.get(item.group) ?? [];
+      g.push(item);
+      map.set(item.group, g);
     }
-    return map
-  }, [filtered])
+    return map;
+  }, [filtered]);
 
-  let globalIndex = -1
+  let globalIndex = -1;
 
   return (
     <AnimatePresence>
@@ -148,9 +160,13 @@ export default function CommandPalette({ open, onClose }: CommandPaletteProps) {
           {/* Dialog */}
           <motion.div
             className="fixed inset-x-0 top-[20%] z-[60] mx-auto w-full max-w-lg px-4"
-            initial={reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.98, y: -8 }}
+            initial={
+              reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.98, y: -8 }
+            }
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.98, y: -8 }}
+            exit={
+              reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.98, y: -8 }
+            }
             transition={{ duration: 0.12 }}
             role="dialog"
             aria-modal="true"
@@ -174,7 +190,10 @@ export default function CommandPalette({ open, onClose }: CommandPaletteProps) {
                 <input
                   ref={inputRef}
                   value={query}
-                  onChange={e => setQuery(e.target.value)}
+                  onChange={(e) => {
+                    setQuery(e.target.value);
+                    setActiveIndex(0);
+                  }}
                   onKeyDown={handleKeyDown}
                   placeholder="Search..."
                   className="w-full bg-transparent px-3 py-3 text-sm t-primary placeholder:t-muted focus:outline-none"
@@ -186,16 +205,18 @@ export default function CommandPalette({ open, onClose }: CommandPaletteProps) {
 
               <div className="max-h-[320px] overflow-y-auto py-2">
                 {filtered.length === 0 ? (
-                  <p className="px-4 py-6 text-sm t-faint text-center">No results</p>
+                  <p className="px-4 py-6 text-sm t-faint text-center">
+                    No results
+                  </p>
                 ) : (
                   Array.from(groups.entries()).map(([group, groupItems]) => (
                     <div key={group}>
-                      <div className="px-4 pt-3 pb-1 text-[10px] font-medium t-faint uppercase tracking-wider">
+                      <div className="px-4 pt-3 pb-1 text-[10px] font-semibold t-muted uppercase tracking-wider">
                         {group}
                       </div>
-                      {groupItems.map(item => {
-                        globalIndex++
-                        const idx = globalIndex
+                      {groupItems.map((item) => {
+                        globalIndex++;
+                        const idx = globalIndex;
                         return (
                           <button
                             key={`${item.group}-${item.label}`}
@@ -203,13 +224,13 @@ export default function CommandPalette({ open, onClose }: CommandPaletteProps) {
                             onMouseEnter={() => setActiveIndex(idx)}
                             className={`w-full text-left px-4 py-2 text-sm transition-colors ${
                               activeIndex === idx
-                                ? 'bg-white/[0.04] t-primary'
-                                : 't-muted hover:t-secondary'
+                                ? "bg-black/5 dark:bg-white/[0.06] t-primary"
+                                : "t-muted hover:t-secondary"
                             }`}
                           >
                             {item.label}
                           </button>
-                        )
+                        );
                       })}
                     </div>
                   ))
@@ -220,5 +241,5 @@ export default function CommandPalette({ open, onClose }: CommandPaletteProps) {
         </>
       )}
     </AnimatePresence>
-  )
+  );
 }

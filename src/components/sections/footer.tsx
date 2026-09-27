@@ -1,4 +1,4 @@
-import { personalInfo } from '@/lib/data'
+import { personalInfo } from "@/lib/data";
 
 export default function Footer() {
   return (
@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Social icons row */}
           <div className="flex items-center gap-4">
             <a
-              href={personalInfo.socials.find(s => s.label === 'GitHub')?.url}
+              href={personalInfo.socials.find((s) => s.label === "GitHub")?.url}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -21,7 +21,9 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href={personalInfo.socials.find(s => s.label === 'LinkedIn')?.url}
+              href={
+                personalInfo.socials.find((s) => s.label === "LinkedIn")?.url
+              }
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -33,7 +35,8 @@ export default function Footer() {
             </a>
           </div>
           <p className="text-xs t-muted">
-            &copy; {new Date().getFullYear()} {personalInfo.name} | All Rights Reserved.
+            &copy; {new Date().getFullYear()} {personalInfo.name} | All Rights
+            Reserved.
           </p>
         </div>
 
@@ -72,5 +75,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

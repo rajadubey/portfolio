@@ -1,27 +1,29 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import FadeIn from '@/components/fade-in'
-import { personalInfo } from '@/lib/data'
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import FadeIn from "@/components/fade-in";
+import { personalInfo } from "@/lib/data";
 
 export default function Contact() {
-  const [showForm, setShowForm] = useState(false)
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
-  const reduceMotion = useReducedMotion()
+  const [showForm, setShowForm] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const reduceMotion = useReducedMotion();
 
   const handleSubmit = () => {
-    const subject = `Message from ${name}`
-    const body = `From: ${name} (${email})\n\n${message}`
-    window.location.href = `mailto:${personalInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-  }
+    const subject = `Message from ${name}`;
+    const body = `From: ${name} (${email})\n\n${message}`;
+    window.location.href = `mailto:${personalInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
 
   return (
     <FadeIn as="section" className="py-16 border-t b-subtle">
       <div id="contact">
-        <h2 className="text-2xl md:text-3xl font-semibold t-primary mb-3">Get in touch</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold t-primary mb-3">
+          Get in touch
+        </h2>
         <a
           href={`mailto:${personalInfo.email}`}
           className="text-emerald-400 hover:text-emerald-300 transition-colors text-lg underline underline-offset-4 decoration-emerald-400/30"
@@ -30,7 +32,7 @@ export default function Contact() {
         </a>
 
         <div className="flex flex-wrap gap-x-4 gap-y-2 mt-4 text-sm t-muted">
-          {personalInfo.socials.map(s => (
+          {personalInfo.socials.map((s) => (
             <a
               key={s.label}
               href={s.url}
@@ -56,17 +58,19 @@ export default function Contact() {
             onClick={() => setShowForm(!showForm)}
             className="text-sm t-faint hover:t-muted transition-colors"
           >
-            {showForm ? 'Close form' : 'Send a message'}
+            {showForm ? "Close form" : "Send a message"}
           </button>
 
           <AnimatePresence initial={false}>
             {showForm && (
               <motion.div
                 initial={reduceMotion ? false : { height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
+                animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={
-                  reduceMotion ? { duration: 0 } : { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
+                  reduceMotion
+                    ? { duration: 0 }
+                    : { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
                 }
                 className="overflow-hidden"
               >
@@ -75,29 +79,32 @@ export default function Contact() {
                     <input
                       type="text"
                       placeholder="Name"
+                      aria-label="Name"
                       value={name}
-                      onChange={e => setName(e.target.value)}
-                      className="bg-[var(--border-subtle)] border b-muted rounded-lg px-3 py-2 text-sm t-primary placeholder:t-faint focus:outline-none focus:border-emerald-500/30"
+                      onChange={(e) => setName(e.target.value)}
+                      className="bg-[var(--border-subtle)] border b-muted rounded-lg px-3 py-2 text-sm t-primary placeholder:t-faint focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 focus:outline-none"
                     />
                     <input
                       type="email"
                       placeholder="Email"
+                      aria-label="Email"
                       value={email}
-                      onChange={e => setEmail(e.target.value)}
-                      className="bg-[var(--border-subtle)] border b-muted rounded-lg px-3 py-2 text-sm t-primary placeholder:t-faint focus:outline-none focus:border-emerald-500/30"
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="bg-[var(--border-subtle)] border b-muted rounded-lg px-3 py-2 text-sm t-primary placeholder:t-faint focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 focus:outline-none"
                     />
                   </div>
                   <textarea
                     placeholder="Message"
+                    aria-label="Message"
                     value={message}
-                    onChange={e => setMessage(e.target.value)}
+                    onChange={(e) => setMessage(e.target.value)}
                     rows={4}
-                    className="w-full bg-[var(--border-subtle)] border b-muted rounded-lg px-3 py-2 text-sm t-primary placeholder:t-faint focus:outline-none focus:border-emerald-500/30 resize-none"
+                    className="w-full bg-[var(--border-subtle)] border b-muted rounded-lg px-3 py-2 text-sm t-primary placeholder:t-faint focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 focus:outline-none resize-none"
                   />
                   <button
                     onClick={handleSubmit}
                     disabled={!name || !message}
-                    className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Send via email client
                   </button>
@@ -108,5 +115,5 @@ export default function Contact() {
         </div>
       </div>
     </FadeIn>
-  )
+  );
 }

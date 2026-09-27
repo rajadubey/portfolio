@@ -1,65 +1,94 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import FadeIn from '@/components/fade-in'
-import { experience } from '@/lib/data'
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import FadeIn from "@/components/fade-in";
+import { experience } from "@/lib/data";
 
 export default function Work() {
-  const [expanded, setExpanded] = useState<number>(0)
-  const reduceMotion = useReducedMotion()
+  const [expanded, setExpanded] = useState<number>(0);
+  const reduceMotion = useReducedMotion();
 
-  const toggle = (i: number) => setExpanded(expanded === i ? -1 : i)
+  const toggle = (i: number) => setExpanded(expanded === i ? -1 : i);
 
   return (
     <FadeIn as="section" className="py-16 border-t b-subtle">
       <div id="work">
-        <h2 className="text-2xl md:text-3xl font-semibold t-primary mb-10">Work</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold t-primary mb-10">
+          Work
+        </h2>
         <div className="relative pl-6 border-l b-muted">
           {experience.map((exp, i) => (
-            <div key={`${exp.company}-${exp.period}`} className="relative mb-8 last:mb-0">
+            <div
+              key={`${exp.company}-${exp.period}`}
+              className="relative mb-8 last:mb-0"
+            >
               {/* Timeline dot */}
               <div
                 className={`absolute -left-[calc(1.5rem+4.5px)] top-1.5 w-[9px] h-[9px] rounded-full border-2 ${
-                  expanded === i ? 'border-emerald-500 bg-emerald-500/20' : 'b-muted bg-transparent'
+                  expanded === i
+                    ? "border-emerald-500 bg-emerald-500/20"
+                    : "b-muted bg-transparent"
                 } transition-colors`}
               />
 
               <button
                 onClick={() => toggle(i)}
-                className="w-full text-left group"
+                className="w-full text-left group flex items-start justify-between gap-3"
                 aria-expanded={expanded === i}
               >
-                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                  <div>
-                    <span className="font-medium t-primary group-hover:text-emerald-400 transition-colors">
-                      {exp.company}
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <div>
+                      <span className="font-medium t-primary group-hover:text-emerald-400 transition-colors">
+                        {exp.company}
+                      </span>
+                      <span className="t-muted mx-2">·</span>
+                      <span className="text-sm t-secondary">{exp.title}</span>
+                    </div>
+                    <span className="text-xs t-muted shrink-0 sm:mr-2">
+                      {exp.period}
                     </span>
-                    <span className="t-muted mx-2">·</span>
-                    <span className="text-sm t-secondary">{exp.title}</span>
                   </div>
-                  <span className="text-xs t-muted shrink-0">{exp.period}</span>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <span className="text-xs t-faint">{exp.location}</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-xs t-faint">{exp.location}</span>
-                </div>
+                <svg
+                  className={`w-4 h-4 t-faint group-hover:t-muted transition-transform shrink-0 mt-1 ${
+                    expanded === i ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
               </button>
 
               <AnimatePresence initial={false}>
                 {expanded === i && (
                   <motion.div
                     initial={reduceMotion ? false : { height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
+                    animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={
-                      reduceMotion ? { duration: 0 } : { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
+                      reduceMotion
+                        ? { duration: 0 }
+                        : { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
                     }
                     className="overflow-hidden"
                   >
                     <ul className="mt-3 space-y-2">
-                      {exp.bullets.map((b, j) => (
+                      {exp.bullets.map((b) => (
                         <li
-                          key={j}
+                          key={b.slice(0, 32)}
                           className="text-sm t-muted leading-relaxed pl-3 border-l b-subtle"
                         >
                           {b}
@@ -74,5 +103,5 @@ export default function Work() {
         </div>
       </div>
     </FadeIn>
-  )
+  );
 }

@@ -65,8 +65,8 @@
   --surface-elevated: #ffffff;
   --text-primary: #111111;
   --text-secondary: rgba(0, 0, 0, 0.7);
-  --text-muted: rgba(0, 0, 0, 0.5);
-  --text-faint: rgba(0, 0, 0, 0.25);
+  --text-muted: rgba(0, 0, 0, 0.65);
+  --text-faint: rgba(0, 0, 0, 0.42);
   --border-subtle: rgba(0, 0, 0, 0.08);
   --border-muted: rgba(0, 0, 0, 0.12);
   --border-default: rgba(0, 0, 0, 0.18);
@@ -81,7 +81,9 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   text-rendering: optimizeLegibility;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .gradient-text {

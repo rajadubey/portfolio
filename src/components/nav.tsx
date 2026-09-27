@@ -1,82 +1,93 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useCallback } from 'react'
-import { layout } from '@/lib/design-tokens'
-import { useTheme } from '@/components/theme-provider'
+import { useCallback, useEffect, useState } from "react";
+import { useTheme } from "@/components/theme-provider";
+
+const NAV_HEIGHT = 56;
+const MAX_WIDTH = "1120px";
 
 const navItems = [
-  { id: 'about', label: 'About' },
-  { id: 'work', label: 'Work' },
-  { id: 'education', label: 'Education' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'engineering', label: 'Engineering' },
-  { id: 'contact', label: 'Contact' },
-]
+  { id: "about", label: "About" },
+  { id: "work", label: "Work" },
+  { id: "education", label: "Education" },
+  { id: "projects", label: "Projects" },
+  { id: "engineering", label: "Engineering" },
+  { id: "contact", label: "Contact" },
+];
 
 interface NavProps {
-  onCommandPalette: () => void
+  onCommandPalette: () => void;
 }
 
 export default function Nav({ onCommandPalette }: NavProps) {
-  const [activeSection, setActiveSection] = useState('home')
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const { theme, toggle: toggleTheme } = useTheme()
+  const [activeSection, setActiveSection] = useState("home");
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, toggle: toggleTheme } = useTheme();
 
   const handleScroll = useCallback(() => {
     const sections = [
-      'home',
-      'about',
-      'work',
-      'education',
-      'projects',
-      'engineering',
-      'contact',
-    ]
-    const scrollY = window.scrollY + 100
+      "home",
+      "about",
+      "work",
+      "education",
+      "projects",
+      "engineering",
+      "contact",
+    ];
+
+    const isAtBottom =
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 60;
+    if (isAtBottom) {
+      setActiveSection("contact");
+      return;
+    }
+
+    const scrollY = window.scrollY + 100;
 
     for (let i = sections.length - 1; i >= 0; i--) {
-      const sectionId = sections[i]
+      const sectionId = sections[i];
       if (sectionId) {
-        const el = document.getElementById(sectionId)
-        if (el && el.offsetTop <= scrollY) {
-          setActiveSection(sectionId)
-          break
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          if (top <= scrollY) {
+            setActiveSection(sectionId);
+            break;
+          }
         }
       }
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [handleScroll])
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id)
+    const el = document.getElementById(id);
     if (el) {
-      const section = el.closest('section') || el.parentElement
+      const section = el.closest("section") || el.parentElement;
       if (section) {
-        section.style.opacity = '1'
-        section.style.transform = 'none'
+        section.style.opacity = "1";
+        section.style.transform = "none";
       }
-      const offset = parseInt(layout.navHeight) + 16
-      const top = el.offsetTop - offset
-      window.scrollTo({ top, behavior: 'smooth' })
+      const offset = NAV_HEIGHT + 16;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
     }
-    setMobileOpen(false)
-  }
+    setMobileOpen(false);
+  };
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 h-14 border-b b-subtle bg-surface/80 backdrop-blur-md transition-colors"
-      role="navigation"
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 h-14 border-b b-subtle bg-surface/80 backdrop-blur-md transition-colors">
       <div
         className="mx-auto h-full flex items-center justify-between px-6"
-        style={{ maxWidth: layout.maxWidth }}
+        style={{ maxWidth: MAX_WIDTH }}
       >
         <button
-          onClick={() => scrollTo('home')}
+          onClick={() => scrollTo("home")}
           className="text-sm font-semibold t-primary transition-colors hover:text-emerald-500"
         >
           Raja Dubey
@@ -84,12 +95,14 @@ export default function Nav({ onCommandPalette }: NavProps) {
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
-          {navItems.map(item => (
+          {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
               className={`text-sm transition-colors ${
-                activeSection === item.id ? 'text-emerald-500 font-medium' : 't-secondary hover:t-primary'
+                activeSection === item.id
+                  ? "text-emerald-500 font-medium"
+                  : "t-secondary hover:t-primary"
               }`}
             >
               {item.label}
@@ -100,8 +113,13 @@ export default function Nav({ onCommandPalette }: NavProps) {
             className="t-primary hover:text-emerald-500 transition-colors p-1"
             aria-label="Toggle theme"
           >
-            {theme === 'dark' ? (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {theme === "dark" ? (
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -110,7 +128,12 @@ export default function Nav({ onCommandPalette }: NavProps) {
                 />
               </svg>
             ) : (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -135,8 +158,13 @@ export default function Nav({ onCommandPalette }: NavProps) {
             className="t-primary hover:text-emerald-500 transition-colors p-2"
             aria-label="Toggle theme"
           >
-            {theme === 'dark' ? (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {theme === "dark" ? (
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -145,7 +173,12 @@ export default function Nav({ onCommandPalette }: NavProps) {
                 />
               </svg>
             ) : (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -160,7 +193,12 @@ export default function Nav({ onCommandPalette }: NavProps) {
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               {mobileOpen ? (
                 <path
                   strokeLinecap="round"
@@ -183,13 +221,15 @@ export default function Nav({ onCommandPalette }: NavProps) {
 
       {/* Mobile dropdown */}
       {mobileOpen && (
-        <div className="md:hidden border-b b-subtle bg-surface px-6 py-4 space-y-3">
-          {navItems.map(item => (
+        <div className="md:hidden border-b b-subtle bg-surface/95 backdrop-blur-md shadow-xl px-6 py-4 space-y-1">
+          {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
-              className={`block w-full text-left text-sm ${
-                activeSection === item.id ? 'text-emerald-500 font-medium' : 't-secondary'
+              className={`w-full text-left text-sm py-2.5 px-3 min-h-[44px] flex items-center rounded-md transition-colors ${
+                activeSection === item.id
+                  ? "text-emerald-500 font-medium"
+                  : "t-secondary hover:t-primary"
               }`}
             >
               {item.label}
@@ -197,15 +237,15 @@ export default function Nav({ onCommandPalette }: NavProps) {
           ))}
           <button
             onClick={() => {
-              onCommandPalette()
-              setMobileOpen(false)
+              onCommandPalette();
+              setMobileOpen(false);
             }}
-            className="block text-sm t-muted pt-2 border-t b-subtle"
+            className="w-full text-left text-sm t-muted py-2.5 px-3 min-h-[44px] flex items-center border-t b-subtle mt-2 hover:t-primary transition-colors"
           >
-            Search <kbd className="text-xs">⌘K</kbd>
+            Search sections...
           </button>
         </div>
       )}
     </nav>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-import HomeShell from '@/components/home-shell'
-import Hero from '@/components/sections/hero'
-import About from '@/components/sections/about'
-import Work from '@/components/sections/work'
-import Education from '@/components/sections/education'
-import Projects from '@/components/sections/projects'
-import Engineering from '@/components/sections/engineering'
-import Contact from '@/components/sections/contact'
-import Footer from '@/components/sections/footer'
+import HomeShell from "@/components/home-shell";
+import About from "@/components/sections/about";
+import Contact from "@/components/sections/contact";
+import Education from "@/components/sections/education";
+import Engineering from "@/components/sections/engineering";
+import Footer from "@/components/sections/footer";
+import Hero from "@/components/sections/hero";
+import Projects from "@/components/sections/projects";
+import Work from "@/components/sections/work";
 
 export default function Home() {
   return (
@@ -24,5 +24,5 @@ export default function Home() {
         <Footer />
       </div>
     </HomeShell>
-  )
+  );
 }
