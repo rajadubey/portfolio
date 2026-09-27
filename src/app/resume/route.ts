@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 const CDN_URL =
-  'https://ik.imagekit.io/interview0/portfolio/resume/Resume%20-%20Raja%20Dubey.pdf';
+  'https://ik.imagekit.io/interview0/portfolio/resume/index.pdf';
 
 export async function GET() {
   const response = await fetch(CDN_URL);

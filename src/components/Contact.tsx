@@ -1,5 +1,5 @@
 'use client';
-import { Mail, Phone, MapPin, Github, Linkedin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Link2, Globe, Send } from 'lucide-react';
 import { DATA } from '../app/data';
 import { SectionTitle } from './SectionTitle';
 import { logContactUs } from '../libs/contact.service';
@@ -133,10 +133,10 @@ export const Contact = () => {
             <div className="pt-4">
               <div className="flex gap-4">
                 <a href={DATA.personal.social.github} target="_blank" rel="noreferrer" aria-label="Visit my GitHub profile" className="p-4 bg-gray-800 rounded-full text-white hover:bg-white hover:text-black transition-all min-h-[44px] min-w-[44px] flex items-center justify-center">
-                    <Github size={20} />
+                  <Globe size={20} />
                 </a>
                 <a href={DATA.personal.social.linkedin} target="_blank" rel="noreferrer" aria-label="Visit my LinkedIn profile" className="p-4 bg-gray-800 rounded-full text-white hover:bg-white hover:text-black transition-all min-h-[44px] min-w-[44px] flex items-center justify-center">
-                    <Linkedin size={20} />
+                    <Link2 size={20} />
                 </a>
               </div>
             </div>

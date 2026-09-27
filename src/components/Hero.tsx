@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Github } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import { Profile } from '../../payload-types';
 
 interface HeroProps {
@@ -119,7 +119,7 @@ export const Hero = ({ profile }: HeroProps) => {
             aria-label="Visit my GitHub profile"
             className="px-8 py-4 bg-transparent border border-gray-700 text-white font-bold rounded-full hover:bg-gray-900 hover:border-white transition-all w-full sm:w-auto justify-center flex items-center gap-2 min-h-[44px] min-w-[44px]"
           >
-            <Github size={20} /> GitHub
+            <Globe size={20} /> GitHub
           </a>
         </motion.div>
       </div>

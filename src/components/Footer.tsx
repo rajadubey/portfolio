@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Globe, Link2, XIcon, Mail } from 'lucide-react';
 import { DATA } from '../app/data';
 import { getCurrentYear } from '@/lib/date-utils';
 
@@ -19,7 +19,7 @@ export const Footer = () => {
             aria-label="Visit my GitHub profile"
             className="p-3 bg-gray-800 rounded-full text-white hover:bg-white hover:text-black transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
           >
-            <Github size={20} />
+            <Globe size={20} />
           </a>
           <a 
             href={DATA.personal.social.linkedin} 
@@ -28,7 +28,7 @@ export const Footer = () => {
             aria-label="Visit my LinkedIn profile"
             className="p-3 bg-gray-800 rounded-full text-white hover:bg-white hover:text-black transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
           >
-            <Linkedin size={20} />
+            <Link2 size={20} />
           </a>
           <a 
             href={DATA.personal.social.twitter} 
@@ -37,7 +37,7 @@ export const Footer = () => {
             aria-label="Visit my X/Twitter profile"
             className="p-3 bg-gray-800 rounded-full text-white hover:bg-white hover:text-black transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
           >
-            <Twitter size={20} />
+            <XIcon size={20} />
           </a>
           <a 
             href={`mailto:${DATA.personal.email}`}

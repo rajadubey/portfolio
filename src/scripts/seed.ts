@@ -9,7 +9,7 @@ console.log('This script contains the data structure for seeding the CMS');
 
 // Profile data structure
 export const profileData = {
-  name: 'Raja Babu Dubey',
+  name: 'Raja Dubey',
   title: 'Senior Software Engineer - UI',
   bio: 'Senior Software Engineer with over 5 years of experience architecting enterprise-grade applications. Currently at Oxyzo Financial Services, I lead the development of internal workflow automation platforms. My role involves not just writing code, but designing the entire frontend ecosystem—from creating private npm registries to establishing standardized UI boilerplates that empower cross-functional teams. Previously, during my tenure at OfBusiness, I tackled high-volume data challenges on platforms like Nexizo.ai and BidAssist. My focus has always been on performance; I successfully optimized legacy web systems, improving performance scores from 65 to 95+ by implementing Server-Side Rendering (SSR) and advanced caching strategies with Redis and CDN edge networks. My technical philosophy bridges the gap between complex backend logic (Spring Boot, Elasticsearch, MongoDB) and fluid, reactive user interfaces (Next.js, Tailwind, Framer Motion). I am currently expanding my expertise into AI, building self-hosted code review systems using LLMs and Docker.',
   email: 'rajadubey1997@gmail.com',
